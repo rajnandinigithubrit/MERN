@@ -1,0 +1,26 @@
+.input-box{
+    display: block;
+    /* margin: 25px; */
+    padding: 7px;
+    width: 300px;
+    border: 1px solid skyblue;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+.btn-sign{
+    padding: 10px;
+    width: 30%;
+    border: 0;
+    margin: 0 auto;
+    text-align: center;
+}
+.btn-sign button{
+    border: 0;
+    background: #3cb1e1;
+    padding: 10px;
+    width: 30%;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+}

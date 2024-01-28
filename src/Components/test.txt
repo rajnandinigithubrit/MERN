@@ -1,0 +1,66 @@
+
+
+const express = require('express')
+const bodyParser = require('body-parser');
+const cors = require('cors');
+
+const app = express();
+app.use(cors());
+app.use(bodyParser.json());
+const port = 5000;
+
+// app.use(express.static(path.join(__dirname,'static')))
+
+app.get('/api',(req,resp)=>{
+    resp.json({users:["userone","usertwo","userthree"]})
+});
+
+app.get('/api/hello/:name',(req,res) =>{
+res.send("hello word" + req.params.name)
+})
+
+
+//post method for login
+app.post('/api/login',(req,res) =>{
+const {username,password} = req.body;
+
+if(username === 'example' && password === 'password'){
+    res.json({success:true,message:'login done'});
+}
+else{
+    res.status(401).json({success:false,message:'login failed'});
+}
+});
+
+
+//post registartion details
+const users = []; // In-memory storage for user data
+
+app.post('/api/register', (req, res) => {
+    const { name, username, password } = req.body;
+
+    // Check for valid registration data
+    if (!name || !username || !password) {
+        return res.status(400).json({ success: false, message: 'Invalid registration data' });
+    }
+
+    // Check if the username is already taken
+    if (users.some((user) => user.username === username)) {
+        return res.status(400).json({ success: false, message: 'Username already taken' });
+    }
+
+    // Store user data in memory
+    const newUser = { name, username, password };
+    users.push(newUser);
+
+    res.json({ success: true, message: 'Registration successful', user: newUser });
+});
+
+// Sample endpoint to retrieve all users (for testing purposes)
+app.get('/api/users', (req, res) => {
+    res.json(users);
+});
+
+
+app.listen(port, () =>{console.log("server started on port 5000")})
+
