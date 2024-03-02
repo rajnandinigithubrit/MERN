@@ -10,6 +10,7 @@ import PrivateComponent from './Components/PrivateComponent';
 import AddProduct from './Components/AddProduct/AddProduct';
 import ViewProduct from './Components/ViewProduct/ViewProduct';
 import UpdateProduct from './Components/UpdateProduct/UpdateProduct';
+import Pdf from './Components/PdfUpload/Pdf';
 function App() {
 //   const [backendData,setBackendData] = useState([{}])
 
@@ -29,6 +30,7 @@ function App() {
       <BrowserRouter>
         <Header />
         <Routes>
+        <Route path='/pdf' element={<Pdf/>}></Route>
           <Route element={<PrivateComponent/>}>
           <Route path='/' element={<ViewProduct/>}></Route>
           <Route path='/add-product' element={<AddProduct/>}></Route>
